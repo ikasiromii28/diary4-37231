@@ -3,7 +3,7 @@ class DiariesController < ApplicationController
   before_action :move_to_index, except: [:index, :show, :search]
 
   def index
-    @diaries = Diary.includes(:user).order("created_at DESC")
+    @diaries = Diary.includes(:user).order('created_at DESC')
   end
 
   def new
@@ -47,8 +47,6 @@ class DiariesController < ApplicationController
   end
 
   def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless user_signed_in?
   end
 end

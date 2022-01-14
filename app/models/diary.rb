@@ -4,7 +4,7 @@ class Diary < ApplicationRecord
   has_many :comments
 
   def self.search(search)
-    if search != ""
+    if search != ''
       Diary.where('text LIKE(?)', "%#{search}%")
     else
       Diary.all

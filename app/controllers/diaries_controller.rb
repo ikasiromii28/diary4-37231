@@ -39,7 +39,7 @@ class DiariesController < ApplicationController
   private
 
   def diary_params
-    params.require(:diary).permit(:image, :text).merge(user_id: current_user.id)
+    params.require(:diary).permit(:title, :image, :text).merge(user_id: current_user.id)
   end
 
   def set_diary

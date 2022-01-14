@@ -3,7 +3,7 @@ class DiariesController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
 
   def index
-    @diaries = Diary.all
+    @diaries = Diary.includes(:user)
   end
 
   def new
@@ -33,7 +33,7 @@ class DiariesController < ApplicationController
   private
 
   def diary_params
-    params.require(:diary).permit(:name, :image, :text)
+    params.require(:diary).permit(:image, :text).merge(user_id: current_user.id)
   end
 
   def set_diary

@@ -7,12 +7,14 @@
           <li>
             <%= link_to '詳細', diary_path(diary.id), method: :get %>
           </li>
-          <li>
-            <%= link_to '編集', edit_diary_path(diary.id), method: :get %>
-          </li>
-          <li>
-            <%= link_to '削除', diary_path(diary.id), method: :delete %>
-          </li>
+          <% if user_signed_in? && current_user.id == diary.user_id %>
+            <li>
+              <%= link_to '編集', edit_diary_path(diary.id), method: :get %>
+            </li>
+            <li>
+              <%= link_to '削除', diary_path(diary.id), method: :delete %>
+            </li>
+          <% end %>
         </ul>
       </div>
       <p><%= diary.text %></p>

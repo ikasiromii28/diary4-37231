@@ -1,24 +1,40 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| Column             | Type       | Options                    |
+| ------------------ | ---------- | -------------------------- |
+| nickname           | string     | null: false                |
+| email              | string     | null: false, UNIQUE: true  |
+| encrypted_password | string     |null: false                 |
+| birthday           | date       |null: false                 |
 
-* Ruby version
+### Association
+- has_many :diaries
+- has_many :comments
 
-* System dependencies
+## diariesテーブル
 
-* Configuration
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| title           | string     | null: false                    |
+| text            | text       | null: false                    |
+| today's_mood    | integer    | null: false                    |
+| today's_weather | integer    | null: false                    |
+| user            | references | null: false, foreign_key: true |
 
-* Database creation
+### Association
+- belongs_to :user
+- has_many :comments
 
-* Database initialization
+## commentsテーブル
 
-* How to run the test suite
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| comment | references | null: false                    |
+| user    | references | null: false, foreign_key: true |
+| diary   | references | null: false, foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Association
+- belongs_to :diary
+- belongs_to :user

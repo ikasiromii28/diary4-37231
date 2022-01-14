@@ -1,5 +1,6 @@
 class DiariesController < ApplicationController
   before_action :set_diary, only: [:edit, :show]
+  before_action :move_to_index, except: [:index, :show]
 
   def index
     @diaries = Diary.all
@@ -37,5 +38,11 @@ class DiariesController < ApplicationController
 
   def set_diary
     @diary = Diary.find(params[:id])
+  end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
   end
 end

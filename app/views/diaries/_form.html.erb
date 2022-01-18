@@ -2,6 +2,8 @@
       <%= form.text_field :title, placeholder: "title" %>
       <%#= form.text_field :image, placeholder: "Image Url" %>
       <%= form.file_field :image, id:"diary-image"%>
+      <%= form.collection_select(:mood_id, Mood.all, :id, :name, {}, {class:"mood-select"}) %>
+      <%= form.collection_select(:weather_id, Weather.all, :id, :name, {}, {class:"weather-select"}) %>
       <%= form.text_area :text, placeholder: "text", rows: "10" %>
       <%= form.submit "SEND" %>
     <% end %>

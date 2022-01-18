@@ -3,7 +3,13 @@ class Diary < ApplicationRecord
   has_many :comments
   has_one_attached :image
 
-  validates :text, presence: true
+  validates :title, presence: true
+  validates :mood_id, numericality: { other_than: 1 ,message: "can't be blank" } 
+  validates :weather_id, numericality: { other_than: 1 ,message: "can't be blank" } 
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :mood
+  belongs_to :weather
 
   def self.search(search)
     if search != ''

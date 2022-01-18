@@ -26,6 +26,10 @@
     <p><%= @diary.text %></p>
   </div>
   <div class="container">
+      <p>今日の気分 * <%= @diary.mood.name %></p>
+      <p>今日の天気 * <%= @diary.weather.name %></p>
+  </div>
+  <div class="container">
     <% if user_signed_in? %>
       <%= form_with(model: [@diary, @comment], local: true) do |form| %>
         <%= form.text_area :text, placeholder: "コメントする", rows: "2" %>

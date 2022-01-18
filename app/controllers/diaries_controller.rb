@@ -11,7 +11,12 @@ class DiariesController < ApplicationController
   end
 
   def create
-    Diary.create(diary_params)
+    @diary = Diary.new(diary_params)
+    if @diary.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def destroy

@@ -4,8 +4,8 @@ class Diary < ApplicationRecord
   has_one_attached :image
 
   validates :title, presence: true
-  validates :mood_id, numericality: { other_than: 1 ,message: "can't be blank" } 
-  validates :weather_id, numericality: { other_than: 1 ,message: "can't be blank" } 
+  validates :mood_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :weather_id, numericality: { other_than: 1, message: "can't be blank" }
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :mood
